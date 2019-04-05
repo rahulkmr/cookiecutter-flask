@@ -1,0 +1,16 @@
+-r base.txt
+
+watchdog==0.9.0
+
+
+autopep8==1.4.3
+black==19.3b0
+coverage==4.5.3
+flake8==3.7.7
+mypy==0.670
+pylint==2.3.1
+pytest==4.4.0
+
+flask-debugtoolbar==0.10.1
+pytest-cov==2.6.1
+codecov==2.0.15

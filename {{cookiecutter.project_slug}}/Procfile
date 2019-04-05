@@ -1,0 +1,2 @@
+release: FLASK_APP={{cookiecutter.project_slug}} FLASK_ENV=production flask db upgrade
+web: FLASK_ENV=production gunicorn '{{cookiecutter.project_slug}}:create_app()' --log-file -
