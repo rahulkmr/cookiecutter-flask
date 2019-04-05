@@ -1,7 +1,7 @@
 ## {{cookiecutter.project_slug}}
 
-[![Build Status](https://travis-ci.org/FILL_UP_your_id/{{cookiecutter.project_slug}}.svg?branch=master)](https://travis-ci.org/{{cookiecutter.author_name}}/{{cookiecutter.project_slug}})
-[![codecov](https://codecov.io/gh/FILL_UP_your_id/{{cookiecutter.project_slug}}/branch/master/graph/badge.svg)](https://codecov.io/gh/{{cookiecutter.author_name}}/{{cookiecutter.project_slug}})
+[![Build Status](https://travis-ci.org/FILL_UP_your_id/{{cookiecutter.project_slug}}.svg?branch=master)](https://travis-ci.org/FILL_UP_your_id/{{cookiecutter.project_slug}})
+[![codecov](https://codecov.io/gh/FILL_UP_your_id/{{cookiecutter.project_slug}}/branch/master/graph/badge.svg)](https://codecov.io/gh/FILL_UP_your_id/{{cookiecutter.project_slug}})
 
 
 ### Running the app locally
