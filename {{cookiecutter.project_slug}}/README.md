@@ -21,6 +21,7 @@ pip install -r requirements/local.txt
 # Look in {{cookiecutter.project_slug}}/settings.py for details.
 cp .env.example .env
 
+# You will need to create the development and test database manually.
 # Once the database is configured, migrations need to run.
 flask db init
 flask db migrate
@@ -29,7 +30,8 @@ flask db upgrade
 # webpack is used to manage assets.
 # Static files under static folder works without webpack.
 # But webpack does nice things like bundle creation, fingerpriting etc.
-npm start 
+# Run webpack in watch mode to continously recompile assets.
+npm run watch
 
 # Run the flask application.
 # FLASK_APP and FLASK_DEBUG is already set in .flaskenv
@@ -50,5 +52,5 @@ The rest of the deployment is for a regular flask application. Change `.env` for
 
 ### Assets management
 
-webpack is used for asset management. The generated manifest is read and the names are used in the templates. Check `webpack.config.js` and `layout.jinja2` for details.
+webpack is used for asset management. The generated manifest is read and the names are used in the templates. Check `webpack.config.js` and `base.html` for details.
 

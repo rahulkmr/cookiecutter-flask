@@ -1,9 +1,12 @@
+{% raw %}
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
 
+    {% endraw %}
     <title>{{cookiecutter.project_slug}} - {% block page_title %}{% endblock %}</title>
+    {% raw %}
 
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <meta name="author" content="{% block meta_author %}{% endblock %}">
@@ -44,3 +47,4 @@
     {% block js %}{% endblock %}
   </body>
 </html>
+{% endraw %}
