@@ -1,0 +1,14 @@
+{% raw %}
+{% extends 'base.html' %}
+{% block title %}{{ _('Send Login') }}{% endblock title %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+
+{% block content %}
+  <h3 class="text-info">{{ _('Login') }}</h3>
+  <form action="{{ url_for_security('login') }}" method="POST" name="send_login_form">
+    {{ send_login_form.hidden_tag() }}
+    {{ render_field_with_errors(send_login_form.email) }}
+    {{ render_field(send_login_form.submit, class_="btn btn-primary") }}
+  </form>
+{% endblock content %}
+{% endraw %}

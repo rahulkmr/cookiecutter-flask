@@ -59,9 +59,7 @@ class Webpack(object):
                 if app.config['WEBPACK_ASSETS_BASE_URL']:
                     self.assets_base_url = app.config['WEBPACK_ASSETS_BASE_URL']
         except IOError:
-            raise RuntimeError(
-                "Flask-Webpack requires 'WEBPACK_MANIFEST_PATH' to be set and "
-                "it must point to a valid json file.")
+            pass
 
     def _refresh_webpack_stats(self):
         """

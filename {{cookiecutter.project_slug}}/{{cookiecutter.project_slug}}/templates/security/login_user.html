@@ -1,0 +1,36 @@
+{% raw %}
+{% extends 'base.html' %}
+{% block title %}{{ _('Login') }}{% endblock title %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+
+{% block content %}
+  <h3 class="text-info"'>{{ _('Login') }}</h3>
+  <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+    {{ login_user_form.hidden_tag() }}
+    {{ render_field_with_errors(login_user_form.email) }}
+    {{ render_field_with_errors(login_user_form.password) }}
+    <div class="form-check">
+      {{ login_user_form.remember(class_="form-check-input") }}
+      {{ login_user_form.remember.label(class_="text-secondary form-check-label") }}
+    </div>
+    {{ render_field(login_user_form.next) }}
+
+    {{ render_field(login_user_form.submit, class_='btn btn-primary') }}
+  </form>
+
+  <div class="row">
+    {% if security.registerable %}
+      <a class="btn btn-link text-info col-md-1" href="{{ url_for_security('register') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">{{ _('Register') }}</a>
+    {% endif %}
+
+    {% if security.recoverable %}
+      <a class="btn btn-link text-info col-md-2" href="{{ url_for_security('forgot_password') }}">{{ _('Forgot password') }}</a>
+    {% endif %}
+
+
+    {% if security.confirmable %}
+      <a class="btn btn-link text-info col-md1" href="{{ url_for_security('send_confirmation') }}">{{ _('Confirm account') }}</a>
+    {% endif %}
+  </div>
+{% endblock content %}
+{% endraw %}

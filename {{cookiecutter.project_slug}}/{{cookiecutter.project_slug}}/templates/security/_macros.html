@@ -1,0 +1,22 @@
+{% raw %}
+{% macro render_field_with_errors(field) %}
+  <div class="form-group">
+    {{ field.label(class_='text-secondary') }}
+    {% set field_class = field.errors and 'is-invalid form-control col-md-4' or 'form-control col-md-4' %}
+    {{ field(class_=field_class, **kwargs)|safe }}
+    {% if field.errors %}
+      <div class="invalid-feedback"">
+        <ul>
+        {% for error in field.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </p>
+{% endmacro %}
+
+{% macro render_field(field) %}
+  <p>{{ field(**kwargs)|safe }}</p>
+{% endmacro %}
+{% endraw %}
