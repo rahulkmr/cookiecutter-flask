@@ -20,6 +20,9 @@ from flask_apispec import FlaskApiSpec
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from whitenoise import WhiteNoise
+{%- if cookiecutter.use_celery == 'y' %}
+from celery import Celery
+{%- endif %}
 
 from . import settings
 from .middlewares import (
@@ -39,6 +42,10 @@ mail = Mail()
 babel = Babel()
 marshmallow = Marshmallow()
 api_spec = FlaskApiSpec()
+{%- if cookiecutter.use_celery == 'y' %}
+celery = Celery(__name__, broker=settings.CELERY_BROKER_URL,
+                backend=settings.CELERY_RESULT_BACKEND)
+{%- endif %}
 
 
 def create_app(config_object=settings):
@@ -49,6 +56,9 @@ def create_app(config_object=settings):
     register_commands(app)
     init_security(app)
     register_blueprints(app)
+    {%- if cookiecutter.use_celery == 'y' %}
+    register_tasks(app)
+    {%- endif %}
 
     return app
 
@@ -68,6 +78,10 @@ def register_extensions(app):
     babel.init_app(app)
     marshmallow.init_app(app)
     api_spec.init_app(app)
+
+    {%- if cookiecutter.use_celery == 'y' %}
+    make_celery(app)
+    {%- endif %}
 
     Webpack(app)
 
@@ -105,3 +119,21 @@ def register_blueprints(app):
 
 def register_commands(app):
     commands.register(app)
+
+
+{% if cookiecutter.use_celery == 'y' %}
+def make_celery(app):
+    celery.conf.update(app.config)
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    return celery
+
+
+def register_tasks(app):
+    from . import tasks
+{% endif %}

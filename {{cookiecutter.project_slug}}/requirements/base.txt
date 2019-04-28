@@ -22,3 +22,11 @@ flask-marshmallow==0.10.0
 marshmallow-sqlalchemy==0.16.1
 
 flask-apispec==0.8.0
+
+{%- if cookiecutter.use_celery == 'y' %}
+celery==4.3.0
+redis==3.2.1
+msgpack==0.6.1
+{%- endif %}
+
+bcrypt==3.1.6
